@@ -1,0 +1,95 @@
+{
+  "name": "vscode-completions-hi",
+  "publisher": "ldas",
+  "displayName": "HI Text Completion",
+  "description": "Completion based on HI Text",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "homepage": "https://github.com/nakamura196/vscode-completions-hi/blob/main/README.md",
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nakamura196/vscode-completions-hi"
+  },
+  "keywords": [
+    "japanese"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./dist/desktop/extension.js",
+  "browser": "./dist/web/extension.js",
+  "contributes": {
+    "commands": [],
+    "keybindings": [],
+    "menus": {},
+    "configuration": {
+      "type": "object",
+      "title": "vscode-completions-hi",
+      "properties": {
+        "vscode-completions-hi.triggerCharacter": {
+          "type": "string",
+          "default": ".",
+          "description": "triggerCharacter",
+          "order": 0
+        },
+        "vscode-completions-hi.api": {
+          "type": "string",
+          "default": "https://d2er1regfcz5zx.cloudfront.net/?text=",
+          "description": "api url",
+          "order": 1
+        },
+        "vscode-completions-hi.re-trigger": {
+          "type": "boolean",
+          "default": true,
+          "description": "Re-trigger completions",
+          "order": 2
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "publish": "vsce publish",
+    "test-web": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "pretest-web": "npm run compile-web",
+    "vscode:prepublish-web": "npm run package-web",
+    "compile-web": "webpack",
+    "watch-web": "webpack --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.66.0",
+    "@types/webpack-env": "^1.16.3",
+    "@types/xmldom": "^0.1.31",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "@vscode/test-electron": "^2.1.3",
+    "@vscode/test-web": "^0.0.24",
+    "eslint": "^8.11.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.2",
+    "process": "^0.11.10",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.5.5",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
